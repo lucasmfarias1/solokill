@@ -1,0 +1,16 @@
+<h1>Home#index</h1>
+
+<%= form_with scope: :post, local: true do |f| %>
+  <div class="text-center">
+    <%= f.text_area :content, class: 'form-control' %>
+    <%= f.submit 'Post', class: 'text-center btn btn-sm btn-block btn-primary' %>
+  </div>
+<% end %>
+
+<h2>All Posts</h2>
+<% @posts.each do |post| %>
+  <p class="post-body">
+    <%= post.user.email %><br>
+    <%= post.content %>
+  </p>
+<% end %>
