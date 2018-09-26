@@ -1,16 +1,37 @@
 <h1>Home#index</h1>
 
-<%= form_with scope: :post, local: true do |f| %>
-  <div class="text-center">
-    <%= f.text_area :content, class: 'form-control' %>
-    <%= f.submit 'Post', class: 'text-center btn btn-sm btn-block btn-primary' %>
-  </div>
-<% end %>
+<div class="row">
 
-<h2>All Posts</h2>
-<% @posts.each do |post| %>
-  <p class="post-body">
-    <%= post.user.email %><br>
-    <%= post.content %>
-  </p>
-<% end %>
+  <div class="col-md-4">
+
+    <h2>Vincule seu nome de invocador a sua conta!</h2>
+    <p>Voce so precisa inserir o codigo na sua conta para que o sistema possa verificar que ela e realmente sua.</p>
+    <p><strong>Seu codigo: <%= @code %></strong></p>
+
+    <%= form_with url: 'home/verify', local: true do |f| %>
+      <%= f.text_field :summoner_name, class: 'form-control', placeholder: 'Summoner Name' %>
+      <%= f.submit 'Vincular', class: 'btn btn-sm btn-block btn-primary' %>
+    <% end %>
+
+    <%= @name %>
+    <%= @id %>
+  </div>
+
+  <div class="col-md-8">
+    <%= form_with scope: :post do |f| %>
+      <div class="text-center">
+        <%= f.text_area :content, class: 'form-control' %>
+        <%= f.submit 'Post', class: 'btn btn-sm btn-block btn-primary' %>
+      </div>
+    <% end %>
+
+    <h2>All Posts</h2>
+    <% @posts.each do |post| %>
+      <p class="post-body">
+        <%= post.user.email %> - <%= post.user.elo %><br>
+        <%= post.content %>
+      </p>
+    <% end %>
+  </div>
+
+</div>

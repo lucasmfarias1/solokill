@@ -66,3 +66,6 @@ gem 'jquery-rails'
 
 # Devise - Authentication system
 gem 'devise'
+
+# .env on development
+gem 'dotenv-rails', groups: [:development, :test]
