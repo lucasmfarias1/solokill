@@ -1,5 +1,25 @@
 @import "bootstrap";
+body {
+}
 
 .post-body {
   word-wrap:break-word;
+}
+
+#post_content {
+  border-radius: 0;
+}
+
+#post-button {
+  border-radius: 0 0 5px 5px;
+}
+
+#toggle-post {
+  line-height: 15px;
+  background-color: #eee;
+  border-radius: 5px 5px 0 0;
+}
+
+#toggle-post:hover {
+  background-color: #ccc;
 }

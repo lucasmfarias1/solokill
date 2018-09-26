@@ -1,37 +1,45 @@
-<h1>Home#index</h1>
+<div class="row mt-3">
 
-<div class="row">
+  <div class="col-md-4 text-center">
+    <% unless current_user.lol_name %>
+      <h2>Vincule seu nome de invocador a sua conta!</h2>
+      <p>Voce so precisa inserir o codigo na sua conta para que o sistema possa verificar que ela e realmente sua.</p>
+      <p><strong>Seu codigo: <%= @code %></strong></p>
 
-  <div class="col-md-4">
+      <%= form_with url: 'home/verify', local: true do |f| %>
+        <div class="form-group">
+          <%= f.text_field :summoner_name, class: 'form-control', placeholder: 'Nome de invocador' %>
+          <%= f.submit 'Vincular', class: 'btn btn-sm btn-block btn-primary' %>
+        </div>
+      <% end %>
 
-    <h2>Vincule seu nome de invocador a sua conta!</h2>
-    <p>Voce so precisa inserir o codigo na sua conta para que o sistema possa verificar que ela e realmente sua.</p>
-    <p><strong>Seu codigo: <%= @code %></strong></p>
-
-    <%= form_with url: 'home/verify', local: true do |f| %>
-      <%= f.text_field :summoner_name, class: 'form-control', placeholder: 'Summoner Name' %>
-      <%= f.submit 'Vincular', class: 'btn btn-sm btn-block btn-primary' %>
+      <%= @name %>
+      <%= @id %>
+    <% else %>
+      <h2><%= current_user.lol_name %></h2>
+      <p><%= current_user.elo %></p>
     <% end %>
-
-    <%= @name %>
-    <%= @id %>
   </div>
 
   <div class="col-md-8">
-    <%= form_with scope: :post do |f| %>
-      <div class="text-center">
-        <%= f.text_area :content, class: 'form-control' %>
-        <%= f.submit 'Post', class: 'btn btn-sm btn-block btn-primary' %>
+
+    <div id="toggle-post" class="text-center">
+      <%= image_tag 'arrow.png', width: '15' %>
+    </div>
+
+    <%= form_with scope: :post, id: 'post-form' do |f| %>
+      <div class="form-group text-center">
+        <%= f.text_area :content, class: 'form-control', autocomplete: 'off' %>
+        <%= f.submit 'Postar', id: 'post-button',class: 'btn btn-sm btn-block btn-primary' %>
       </div>
     <% end %>
 
-    <h2>All Posts</h2>
-    <% @posts.each do |post| %>
-      <p class="post-body">
-        <%= post.user.email %> - <%= post.user.elo %><br>
-        <%= post.content %>
-      </p>
-    <% end %>
+    <h2>Todos os posts</h2>
+
+    <div id="posts">
+      <%= render @posts %>
+    </div>
+
   </div>
 
 </div>

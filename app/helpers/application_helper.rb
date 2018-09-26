@@ -8,7 +8,7 @@ module ApplicationHelper
     "soloq#{SecureRandom.hex(4)}"
   end
 
-  def get_summoner_id(summoner_name)
+  def get_summoner_id_name(summoner_name)
     return false if summoner_name.length > 16 || summoner_name.length < 1
 
     url_name = summoner_name.gsub(' ', '%20')
@@ -16,14 +16,14 @@ module ApplicationHelper
     url = open("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/#{url_name}?api_key=#{ENV["RIOT_KEY"]}").string
 
     summoner_hash = JSON.parse url
-    summoner_hash["id"]
+    [summoner_hash["id"], summoner_hash["name"]]
   end
 
   def check_verification_code(summoner_id, code)
     url = open("https://br1.api.riotgames.com/lol/platform/v3/third-party-code/by-summoner/#{summoner_id}?api_key=#{ENV["RIOT_KEY"]}").string
 
     verification_hash = JSON.parse url
-    return verification_hash == code
+    return verification_hash == code.downcase
   end
 
   def get_tier_rank(summoner_id)

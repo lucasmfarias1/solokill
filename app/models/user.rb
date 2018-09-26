@@ -7,6 +7,13 @@ class User < ApplicationRecord
 
   def elo
     return 'Unranked' unless self.lol_tier
-    return 'w000ps'
+
+    self.lol_tier + " " + self.lol_rank
+  end
+
+  def name
+    return self.email unless self.lol_name
+
+    self.lol_name
   end
 end
