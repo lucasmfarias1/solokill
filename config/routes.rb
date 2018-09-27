@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'home/index', to: 'home#new_post'
 
   post 'home/verify', to: 'home#verify'
+  delete 'home/verify', to: 'home#unverify'
 
   get '/challenger', to: 'home#index', defaults: { filter: 'CHALLENGER' }
   get '/master', to: 'home#index', defaults: { filter: 'MASTER' }
@@ -15,4 +16,5 @@ Rails.application.routes.draw do
   get '/gold', to: 'home#index', defaults: { filter: 'GOLD' }
   get '/silver', to: 'home#index', defaults: { filter: 'SILVER' }
   get '/bronze', to: 'home#index', defaults: { filter: 'BRONZE' }
+
 end

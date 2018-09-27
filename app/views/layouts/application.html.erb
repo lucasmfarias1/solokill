@@ -12,7 +12,7 @@
   <body>
     <% if current_user %>
       <nav class="navbar px-2 py-0 navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand" href="/">Solokill</a>
+        <a class="navbar-brand mr-2" href="/">Solokill</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,21 +20,67 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
+              <a class="nav-link p-0" href="/challenger"><%= image_tag 'challenger.png' %></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/diamond">Diamond</a>
+              <a class="nav-link p-0" href="/master"><%= image_tag 'master.png' %></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/silver">Silver</a>
+              <a class="nav-link p-0" href="/diamond"><%= image_tag 'diamond.png' %></a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link p-0" href="/platinum"><%= image_tag 'platinum.png' %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-0" href="/gold"><%= image_tag 'gold.png' %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-0" href="/silver"><%= image_tag 'silver.png' %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-0" href="/bronze"><%= image_tag 'bronze.png' %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-0" href="/bronze"></a>
+            </li>
+
           </ul>
-          <div class="form-inline my-2 my-lg-0">
-            <%= current_user.email %>
-            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'ml-1 btn btn-danger' %>
+          <div class="form-inline my-0 my-lg-0">
+            <div class="nav-item dropdown mr-1">
+              <a class="nav-link dropdown-toggle p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= image_tag 'gear.png', height: 55 %>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <% if current_user.lol_name %>
+                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalDesvincular">Desvincular Invocador</a>
+                <% end %>
+              </div>
+            </div>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-warning' %>
           </div>
         </div>
       </nav>
+
+      <!-- Modal Desvincular -->
+      <div class="modal fade" id="modalDesvincular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Desvincular "<%= current_user.name %>"?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Isso fara com que este nome de invocador nao seja mais associado com a sua conta do Solokill. Tem certeza disso?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              <%= link_to 'Desvincular', 'home/verify', method: :delete, class: 'ml-1 btn btn-danger' %>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
 
     <div id="main-container" class="container">
@@ -49,5 +95,7 @@
 
       <%= yield %>
     </div>
+
+
   </body>
 </html>

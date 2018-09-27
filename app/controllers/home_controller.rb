@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  protect_from_forgery prepend: true
   before_action :authenticate_user!
   include ApplicationHelper
   def index
@@ -49,9 +50,18 @@ class HomeController < ApplicationController
     id, real_name = get_summoner_id_name(name)
     tier, rank = get_tier_rank(id)
 
-    lol_key = 'webmulher' #current_user.lol_verification_key
+    lol_key = 'sp4ceman' #current_user.lol_verification_key
 
     if check_verification_code(id, lol_key)
+      if User.exists?(lol_name: real_name)
+        #this shit alrdy exist
+        duplicate_user = User.find_by(lol_name: real_name)
+        duplicate_user.lol_name = nil
+        duplicate_user.lol_tier = nil
+        duplicate_user.lol_rank = nil
+        duplicate_user.save
+      end
+
       current_user.lol_name = real_name
       current_user.lol_tier = tier
       current_user.lol_rank = rank
@@ -61,13 +71,24 @@ class HomeController < ApplicationController
       else
         flash[:alert] = "Um erro inesperado aconteceu! D:"
       end
-
       redirect_back fallback_location: '/'
     else
       flash[:alert] = 'O codigo de verificacao nao confere...'
       redirect_back fallback_location: '/'
     end
+  end
 
-    # just for tests, works btw
+  def unverify
+    current_user.lol_name = nil
+    current_user.lol_tier = nil
+    current_user.lol_rank = nil
+
+    if current_user.save
+      flash[:notice] = "Seu nome de invocador foi desvinculado com sucesso!"
+      redirect_back fallback_location: '/'
+    else
+      flash[:alert] = "Oops... Algo deu errado..."
+      redirect_back fallback_location: '/'
+    end
   end
 end

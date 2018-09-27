@@ -1,8 +1,8 @@
 <div class="row mt-3">
 
-  <div class="col-md-4 text-center">
+  <div class="col-sm-4 text-center">
     <% unless current_user.lol_name %>
-      <h2>Vincule seu nome de invocador a sua conta!</h2>
+      <h3>Vincule seu nome de invocador a sua conta!</h3>
       <p>Voce so precisa inserir o codigo na sua conta para que o sistema possa verificar que ela e realmente sua.</p>
       <p><strong>Seu codigo: <%= @code %></strong></p>
 
@@ -12,16 +12,15 @@
           <%= f.submit 'Vincular', class: 'btn btn-sm btn-block btn-primary' %>
         </div>
       <% end %>
+      <%= current_user.email %>
 
-      <%= @name %>
-      <%= @id %>
     <% else %>
       <h2><%= current_user.lol_name %></h2>
       <p><%= current_user.elo %></p>
     <% end %>
   </div>
 
-  <div class="col-md-8">
+  <div class="col-sm-8">
 
     <div id="toggle-post" class="text-center">
       <%= image_tag 'arrow.png', width: '15' %>
