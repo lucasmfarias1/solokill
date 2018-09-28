@@ -20,13 +20,19 @@ module ApplicationHelper
   end
 
   def check_verification_code(summoner_id, code)
-    url = open("https://br1.api.riotgames.com/lol/platform/v3/third-party-code/by-summoner/#{summoner_id}?api_key=#{ENV["RIOT_KEY"]}").string
+    return false unless summoner_id
+    begin
+      url = open("https://br1.api.riotgames.com/lol/platform/v3/third-party-code/by-summoner/#{summoner_id}?api_key=#{ENV["RIOT_KEY"]}").string
+    rescue
+      return false
+    end
 
     verification_hash = JSON.parse url
     return verification_hash == code.downcase
   end
 
   def get_tier_rank(summoner_id)
+    return false unless summoner_id
     url = open("https://br1.api.riotgames.com/lol/league/v3/positions/by-summoner/#{summoner_id}?api_key=#{ENV["RIOT_KEY"]}").string
 
     rank_array = JSON.parse url

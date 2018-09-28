@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   def elo
-    return 'Unranked' unless self.lol_tier
+    return 'UNRANKED' unless self.lol_tier
 
     self.lol_tier + " " + self.lol_rank
   end

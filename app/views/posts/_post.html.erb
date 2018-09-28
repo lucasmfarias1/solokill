@@ -1,11 +1,13 @@
 <div class="card my-1">
   <div class="card-body p-3">
     <%= image_tag 'anonymous.png', id: 'post-photo', class: 'mr-2 border border-secondary rounded-circle float-left w-25' %>
-    <a href="#" class="float-right btn btn-sm btn-primary">Follow</a>
+    <!-- <a href="#" class="float-right btn btn-sm btn-primary">Follow</a> -->
     <p>
       <strong><%= post.user.name %></strong>
       <span class="badge badge-secondary"><%= post.user.elo %></span> -
-      <span class="text-muted">2 hours ago</span>
+      <span class="text-muted">
+        <%= time_ago_in_words(post.created_at) %> ago
+      </span>
     </p>
     <p class="card-text"><%= post.content %></p>
   </div>

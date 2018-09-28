@@ -69,3 +69,6 @@ gem 'devise'
 
 # .env on development
 gem 'dotenv-rails', groups: [:development, :test]
+
+# Pagination and shit
+gem 'kaminari'

@@ -9,12 +9,15 @@ class HomeController < ApplicationController
       filter = ''
     end
     if filter != ''
-      @posts = Post.joins(:user).where('users.lol_tier = ?',
-                                       filter)
+      @posts = Post.joins(:user).where('users.lol_tier = ?', filter)
                                 .order('created_at DESC')
+                                .page(params[:page]).per(5)
     else
-      @posts = Post.all.order('created_at DESC')
+      @posts = Post.order('created_at DESC')
+                   .page(params[:page]).per(5)
     end
+    # @posts = Post.all.order('created_at DESC')
+    # @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(5)
 
     # Post.joins(:user).where('users.lol_tier = ?', "DIAMOND")
 
@@ -36,10 +39,10 @@ class HomeController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_back fallback_location: '/', notice: 'Posted!' }
+        format.html { redirect_to '/', notice: 'Posted!' }
         format.js
       else
-        format.html { redirect_back fallback_location: '/', notice: 'Failed!' }
+        format.html { redirect_to '/', notice: 'Failed!' }
         format.js
       end
     end
@@ -69,12 +72,12 @@ class HomeController < ApplicationController
       if current_user.save
         flash[:notice] = "Conta '#{real_name}' vinculada com sucesso!"
       else
-        flash[:alert] = "Um erro inesperado aconteceu! D:"
+        flash[:alert] = "Um erro inesperado aconteceu! Meu deus alguém avisa o ADM D:"
       end
-      redirect_back fallback_location: '/'
+      redirect_to '/'
     else
-      flash[:alert] = 'O codigo de verificacao nao confere...'
-      redirect_back fallback_location: '/'
+      flash[:alert] = 'O código de verificação não confere ou o API da Riot tá com problemas (de novo velho...)'
+      redirect_to '/'
     end
   end
 
@@ -85,10 +88,10 @@ class HomeController < ApplicationController
 
     if current_user.save
       flash[:notice] = "Seu nome de invocador foi desvinculado com sucesso!"
-      redirect_back fallback_location: '/'
+      redirect_to '/'
     else
-      flash[:alert] = "Oops... Algo deu errado..."
-      redirect_back fallback_location: '/'
+      flash[:alert] = "Um erro inesperado aconteceu! Meu deus alguém avisa o ADM D:"
+      redirect_to '/'
     end
   end
 end
