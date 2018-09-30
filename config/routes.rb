@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post 'home/verify', to: 'home#verify'
   delete 'home/verify', to: 'home#unverify'
 
+  post 'home/image', to: 'home#set_image'
+
   get '/challenger', to: 'home#index', defaults: { filter: 'CHALLENGER' }
   get '/master', to: 'home#index', defaults: { filter: 'MASTER' }
   get '/diamond', to: 'home#index', defaults: { filter: 'DIAMOND' }

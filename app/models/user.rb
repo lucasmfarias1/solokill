@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   has_many :posts
+
+  mount_uploader :image, ImageUploader
+  # validates :image, file_size: { less_than: 1.megabytes }
+
   # Include default devise modules. Others available are:
   #  :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,

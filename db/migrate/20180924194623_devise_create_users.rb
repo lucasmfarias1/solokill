@@ -37,6 +37,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :lol_tier
       t.string :lol_rank
       t.string :lol_verification_key
+      t.string :image
 
 
       t.timestamps null: false

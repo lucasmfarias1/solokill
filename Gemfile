@@ -72,3 +72,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 # Pagination and shit
 gem 'kaminari'
+
+# Image upload and manipulation
+gem 'carrierwave'
+gem 'cloudinary'

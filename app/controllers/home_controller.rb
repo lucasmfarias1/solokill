@@ -94,4 +94,21 @@ class HomeController < ApplicationController
       redirect_to '/'
     end
   end
+
+  def set_image
+    if current_user.image = params[:image]
+    else
+      flash[:alert] = "Você não selecionou imagem alguma..."
+      redirect_to '/'
+      return false
+    end
+
+    if current_user.save
+      flash[:notice] = "Imagem alterada com sucesso!"
+      redirect_to '/'
+    else
+      flash[:alert] = "Um erro inesperado aconteceu! Meu deus alguém avisa o ADM D:"
+      redirect_to '/'
+    end
+  end
 end

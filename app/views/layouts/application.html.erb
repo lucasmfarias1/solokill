@@ -12,7 +12,7 @@
   <body>
     <% if current_user %>
       <nav class="navbar px-2 py-0 navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand mr-2" href="/">Solokill</a>
+        <a class="navbar-brand mr-2" href="/"><%= image_tag 'logo-sk.png', height: '45' %></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,59 +43,97 @@
             <li class="nav-item">
               <a class="nav-link p-0" href="/bronze"></a>
             </li>
-
           </ul>
           <div class="form-inline my-0 my-lg-0">
-            <div class="nav-item dropdown mr-1">
-              <a class="nav-link dropdown-toggle p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= image_tag 'gear.png', height: 55 %>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <% if current_user.lol_name %>
-                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalDesvincular">Desvincular Invocador</a>
-                <% end %>
-              </div>
-            </div>
+            <a class="mx-2" href="#" data-toggle="modal" data-target="#modalConfig">
+              <%= image_tag 'gear.png', height: 55 %>
+            </a>
             <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-warning' %>
           </div>
         </div>
       </nav>
 
       <!-- Modal Desvincular -->
-      <div class="modal fade" id="modalDesvincular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="modalConfig" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Desvincular "<%= current_user.name %>"?</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Configurações</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <p>Isso fara com que este nome de invocador nao seja mais associado com a sua conta do Solokill. Tem certeza disso?</p>
+              <%= form_with url: 'home/image', local: true do |f| %>
+                <%= f.label :image, 'Foto de perfil' %>
+                <%= f.hidden_field :image_cache %>
+                <%= f.file_field :image %>
+                <%= f.submit 'Mudar foto de perfil', class: 'btn btn-sm btn-primary' %>
+              <% end %>
+
+              <hr>
+
+              <%= link_to 'Desvincular Invocador', 'home/verify', method: :delete, class: 'ml-1 btn btn-sm btn-danger' %>
+              <span data-toggle="tooltip" data-placement="top" title="Isso fará com que o seu nome de invocador seja desvinculado da sua conta do Solokill.">que?</span>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-              <%= link_to 'Desvincular', 'home/verify', method: :delete, class: 'ml-1 btn btn-danger' %>
+
             </div>
           </div>
         </div>
       </div>
     <% end %>
 
-    <div id="main-container" class="container">
-      <div id="alert-box">
-        <% if notice %>
-        <p class="notice alert alert-info"><%= notice %></p>
-        <% end %>
-        <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-        <% end %>
+    <% if current_user %>
+
+      <div id="main-container" class="container">
+        <div id="alert-box" class="mt-1">
+          <% if notice %>
+          <p class="notice alert alert-info"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+          <% end %>
+        </div>
+
+        <%= yield %>
       </div>
 
-      <%= yield %>
-    </div>
+    <% else %>
 
+      <div id="login-page" class="container-fluid">
+
+
+        <div class="row">
+          <div class="col-sm-6" id="login-box">
+            <%= link_to 'sign_in' do %>
+              <%= image_tag 'logo-sk.png', height: '45' %>
+            <% end %>
+            <div id="alert-box" class="mt-1">
+              <% if notice %>
+              <p class="notice alert alert-info"><%= notice %></p>
+              <% end %>
+              <% if alert %>
+              <p class="alert alert-danger"><%= alert %></p>
+              <% end %>
+            </div>
+
+            <%= yield %>
+          </div>
+          <div id="ad-side" class="col-sm-6 align-middle">
+            <ul class="text-center p-0">
+              <li><%= image_tag 'verify.png', height: 50 %> Vincule sua conta do LoL.</li>
+              <li><%= image_tag 'badge.png', height: 40 %> Mostre a todos quem você é.</li>
+              <li><%= image_tag 'read.png', height: 50 %> Veja o que as pessoas estão falando.</li>
+              <li><%= image_tag 'speak.png' %> Entre na discussão!</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    <% end %>
 
   </body>
 </html>

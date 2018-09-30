@@ -1,14 +1,15 @@
 <div class="row mt-3">
 
   <div class="col-sm-4 text-center">
+
     <% unless current_user.lol_name %>
       <h3>Vincule seu nome de invocador a sua conta!</h3>
       <p>Voce so precisa inserir o codigo na sua conta para que o sistema possa verificar que ela e realmente sua.</p>
       <p><strong>Seu codigo: <%= @code %></strong></p>
 
-      <%= form_with url: 'home/verify', local: true do |f| %>
+      <%= form_with url: 'home/verify' do |f| %>
         <div class="form-group">
-          <%= f.text_field :summoner_name, class: 'form-control', placeholder: 'Nome de invocador' %>
+          <%= f.text_field :summoner_name, class: 'form-control', autocomplete: 'off', placeholder: 'Nome de invocador' %>
           <%= f.submit 'Vincular', class: 'btn btn-sm btn-block btn-primary' %>
         </div>
       <% end %>

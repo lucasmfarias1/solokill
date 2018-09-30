@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2018_09_24_210139) do
     t.string "lol_tier"
     t.string "lol_rank"
     t.string "lol_verification_key"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
