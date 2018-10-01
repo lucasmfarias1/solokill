@@ -53,7 +53,7 @@ class HomeController < ApplicationController
     id, real_name = get_summoner_id_name(name)
     tier, rank = get_tier_rank(id)
 
-    lol_key = 'sp4ceman' #current_user.lol_verification_key
+    lol_key = current_user.lol_verification_key
 
     if check_verification_code(id, lol_key)
       if User.exists?(lol_name: real_name)

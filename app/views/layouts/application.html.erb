@@ -64,7 +64,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <%= form_with url: 'home/image', local: true do |f| %>
+              <%= form_with url: 'home/image' do |f| %>
                 <%= f.label :image, 'Foto de perfil' %>
                 <%= f.hidden_field :image_cache %>
                 <%= f.file_field :image %>
