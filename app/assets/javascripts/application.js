@@ -25,4 +25,7 @@ $(document).on('turbolinks:load', function() {
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   });
+  $("#new-post-alert").click(function() {
+    $(document).attr("title", "Solokill(New post)");
+  })
 });
