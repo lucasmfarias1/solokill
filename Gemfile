@@ -84,3 +84,6 @@ gem 'kaminari'
 # Image upload and manipulation
 gem 'carrierwave'
 gem 'cloudinary'
+
+# live post updates
+gem 'pusher'

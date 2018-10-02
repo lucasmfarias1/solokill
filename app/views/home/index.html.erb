@@ -50,9 +50,33 @@
       </div>
     <% end %>
 
+    <script>
+        var pusher = new Pusher("55d77172c59cfedfe8f9", {
+          cluster: 'us2',
+          encrypted: true
+        });
+    </script>
+
+    <div id="new-post-alert">
+    </div>
     <div id="posts">
       <%= render @posts %>
     </div>
+
+    <script>
+        var channel = pusher.subscribe('posts-channel');
+        channel.bind('new-post', function(data) {
+            let post_user = data.user;
+
+            let div = document.getElementById('new-post-alert');
+            let new_content = document.createElement("div");
+            new_content.innerHTML = `
+            <div class="alert alert-primary" role="alert">
+              <a href="#" class="alert-link">${post_user} acabou de postar algo</a>
+            </div>`;
+            $(div).html(new_content);
+        });
+    </script>
 
     <div id="carregar-mais" class="my-4 text-center">
       <%= link_to_next_page @posts, 'Carregar mais posts', :remote => true, :id=>"load_more_link" %>

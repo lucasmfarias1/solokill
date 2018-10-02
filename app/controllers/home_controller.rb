@@ -39,6 +39,11 @@ class HomeController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        Pusher.trigger('posts-channel','new-post', {
+          user: @post.user.name,
+          content: @post.content
+        })
+
         format.html { redirect_to '/', notice: 'Posted!' }
         format.js
       else
