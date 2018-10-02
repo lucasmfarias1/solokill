@@ -11,10 +11,10 @@ class HomeController < ApplicationController
     if filter != ''
       @posts = Post.joins(:user).where('users.lol_tier = ?', filter)
                                 .order('created_at DESC')
-                                .page(params[:page]).per(5)
+                                .page(params[:page]).per(10)
     else
       @posts = Post.order('created_at DESC')
-                   .page(params[:page]).per(5)
+                   .page(params[:page]).per(10)
     end
     # @posts = Post.all.order('created_at DESC')
     # @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(5)
