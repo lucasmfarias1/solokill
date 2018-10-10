@@ -33,7 +33,16 @@
 
     <% else %>
       <h2><%= current_user.lol_name %></h2>
-      <p><%= current_user.elo %></p>
+      <p>
+        <span class="badge badge-secondary">
+          <%= current_user.elo %>
+        </span>
+      </p>
+      <% if current_user.image.url %>
+        <%= image_tag(current_user.image.url, class: 'w-50 rounded-circle') %>
+      <% else %>
+        <%= image_tag 'anonymous.png', id: 'post-photo', class: 'mr-2 border border-secondary rounded-circle float-left w-25' %>
+      <% end %>
     <% end %>
   </div>
 

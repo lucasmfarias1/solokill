@@ -24,28 +24,21 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link p-0" href="/challenger"><%= image_tag 'challenger.png' %></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link p-0" href="/master"><%= image_tag 'master.png' %></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link p-0" href="/diamond"><%= image_tag 'diamond.png' %></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link p-0" href="/platinum"><%= image_tag 'platinum.png' %></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link p-0" href="/gold"><%= image_tag 'gold.png' %></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link p-0" href="/silver"><%= image_tag 'silver.png' %></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link p-0" href="/bronze"><%= image_tag 'bronze.png' %></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link p-0" href="/bronze"></a>
+              <a class="nav-link" href="/">Home</a>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Filtrar
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/challenger">Challenger</a>
+                <a class="dropdown-item" href="/master">Master</a>
+                <a class="dropdown-item" href="/diamond">Diamond</a>
+                <a class="dropdown-item" href="/platinum">Platinum</a>
+                <a class="dropdown-item" href="/gold">Gold</a>
+                <a class="dropdown-item" href="/silver">Silver</a>
+                <a class="dropdown-item" href="/bronze">Bronze</a>
+              </div>
             </li>
           </ul>
           <div class="form-inline my-0 my-lg-0">
@@ -125,7 +118,7 @@
 
             <%= yield %>
           </div>
-          <div id="ad-side" class="col-sm-6 align-middle">
+          <div id="ad-side" class="col-sm-6">
             <ul class="text-center p-0">
               <li><%= image_tag 'verify.png', height: 50 %> Vincule sua conta do LoL.</li>
               <li><%= image_tag 'badge.png', height: 40 %> Mostre a todos quem você é.</li>
