@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   get '/silver', to: 'home#index', defaults: { filter: 'SILVER' }
   get '/bronze', to: 'home#index', defaults: { filter: 'BRONZE' }
 
+  resources :users, only: [:show]
 end

@@ -7,7 +7,9 @@
     <% end %>
 
     <p>
-      <strong><%= post.user.name %></strong>
+      <%= link_to user_path(post.user_id) do %>
+        <strong><%= post.user.name %></strong>
+      <% end %>
       <span class="badge badge-secondary"><%= post.user.elo %></span> -
       <span class="text-muted">
         <%= time_ago_in_words(post.created_at) %> ago

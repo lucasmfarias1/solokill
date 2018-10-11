@@ -1,0 +1,27 @@
+<div class="row">
+
+  <div class="col-sm-4 text-center my-2">
+
+    <p class="my-1"><strong><%= @user.name %></strong></p>
+    <p>
+      <span class="badge badge-secondary">
+        <%= @user.elo %>
+      </span>
+    </p>
+    <% if @user.image.url %>
+      <%= image_tag(@user.image.url, class: 'w-50 rounded-circle') %>
+    <% else %>
+      <%= image_tag 'anonymous.png', class: 'border border-secondary rounded-circle w-50' %>
+    <% end %>
+
+  </div>
+
+  <div class="col-sm-8">
+
+    <div id="posts">
+      <%= render @posts %>
+    </div>
+
+  </div>
+
+</div>
