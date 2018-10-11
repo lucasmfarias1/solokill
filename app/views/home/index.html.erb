@@ -41,7 +41,7 @@
       <% if current_user.image.url %>
         <%= image_tag(current_user.image.url, class: 'w-50 rounded-circle') %>
       <% else %>
-        <%= image_tag 'anonymous.png', id: 'post-photo', class: 'mr-2 border border-secondary rounded-circle float-left w-25' %>
+        <%= image_tag 'anonymous.png', class: 'border border-secondary rounded-circle w-50' %>
       <% end %>
     <% end %>
   </div>
