@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   get '/bronze', to: 'home#index', defaults: { filter: 'BRONZE' }
 
   resources :users, only: [:show]
+
+  get '/sync', to: 'users#sync_elo'
 end

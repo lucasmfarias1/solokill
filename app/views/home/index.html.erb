@@ -32,7 +32,12 @@
       <%= current_user.email %>
 
     <% else %>
-      <p class="my-1"><strong><%= current_user.name %></strong></p>
+      <p class="my-1">
+        <%= link_to user_path(current_user.id) do %>
+          <strong><%= current_user.name %></strong>
+        <% end %>
+      </p>
+
       <p>
         <span class="badge badge-secondary">
           <%= current_user.elo %>
@@ -43,6 +48,12 @@
       <% else %>
         <%= image_tag 'anonymous.png', class: 'border border-secondary rounded-circle w-50' %>
       <% end %>
+
+      <p>
+        <%= link_to '/sync', class: 'btn btn-outline-info my-1' do %>
+          <%= image_tag 'refresh.png' %>
+        <% end %>
+      </p>
     <% end %>
   </div>
 
