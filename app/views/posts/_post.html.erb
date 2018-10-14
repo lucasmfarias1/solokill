@@ -20,7 +20,7 @@
     </p>
 
     <% if post.parent %>
-      <%= link_to post_path(post.parent) do %>
+      <%= link_to post_path(post.parent), class: 'btn btn-light btn-sm' do %>
         <p class="text-muted m-0">
           <em><small>- em resposta à</small></em>
         </p>
@@ -29,13 +29,23 @@
 
     <p class="card-text">
       <%= post.content %>
-      <% if post.user == current_user %>
-        <%= link_to 'X', post_path(post),
-                class: 'float-right btn btn-sm btn-danger',
-                method: :delete,
-                data: { confirm: 'Tem certeza?' } %>
-      <% end %>
+
     </p>
 
+
+  </div>
+
+  <div class="p-1 card-footer text-muted">
+    <%= link_to post_path(post), class: 'btn btn-light btn-sm' do %>
+      <%= post.children.count %>
+      <%= image_tag 'replies.png' %>
+    <% end %>
+
+    <% if post.user == current_user %>
+      <%= link_to 'x', post_path(post),
+              class: 'btn btn-danger btn-sm',
+              method: :delete,
+              data: { confirm: 'Tem certeza?' } %>
+    <% end %>
   </div>
 </div>
