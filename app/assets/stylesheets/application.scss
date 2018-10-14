@@ -19,21 +19,11 @@ body {
   max-width: 75px;
 }
 
-#toggle-post {
-  line-height: 15px;
-  background-color: #eee;
-  border-radius: 5px 5px 0 0;
-}
-
-#toggle-post:hover {
-  background-color: #ccc;
-}
-
 #login-box {
   padding: 2%;
 }
 
-#ad-side {
+#login-side {
   background-color: #333;
   min-height: 100vh;
   color: #fff;
@@ -41,12 +31,12 @@ body {
 }
 
 @media only screen and (max-width: 575px) {
-  #ad-side {
+  #login-side {
     min-height: 0;
     padding-bottom: 4%;
   }
 }
-#ad-side ul {
+#login-side ul {
   list-style-type: none;
   font-size: 1.4em;
   font-weight: 700;

@@ -59,10 +59,6 @@
 
   <div class="col-sm-8">
 
-    <div id="toggle-post" class="text-center mt-2">
-      <%= image_tag 'arrow.png', width: '15' %>
-    </div>
-
     <%= form_with scope: :post, id: 'post-form' do |f| %>
       <div class="form-group text-center">
         <%= f.text_area :content, class: 'form-control', autocomplete: 'off' %>

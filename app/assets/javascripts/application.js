@@ -19,9 +19,6 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
-  $("#toggle-post").click(function() {
-    $("#post-form").slideToggle();
-  });
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   });
