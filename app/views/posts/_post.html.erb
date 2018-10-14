@@ -11,9 +11,11 @@
         <strong><%= post.user.name %></strong>
       <% end %>
       <span class="badge badge-secondary"><%= post.user.elo %></span> -
-      <span class="text-muted">
-        <%= time_ago_in_words(post.created_at) %> ago
-      </span>
+      <%= link_to post_path(post.id) do %>
+        <span class="text-muted">
+          <%= time_ago_in_words(post.created_at) %> ago
+        </span>
+      <% end %>
     </p>
     <p class="card-text"><%= post.content %></p>
   </div>
