@@ -29,7 +29,6 @@
           <%= f.submit 'Vincular', class: 'btn btn-sm btn-block btn-primary' %>
         </div>
       <% end %>
-      <%= current_user.email %>
 
     <% else %>
       <p class="my-1">
@@ -49,10 +48,13 @@
         <%= image_tag 'anonymous.png', class: 'border border-secondary rounded-circle w-50' %>
       <% end %>
 
-      <p>
+      <p class="my-1">
         <%= link_to '/sync', class: 'btn btn-outline-info my-1' do %>
           <%= image_tag 'refresh.png' %>
         <% end %>
+      </p>
+      <p>
+        <%= current_user.posts.count %> posts
       </p>
     <% end %>
   </div>

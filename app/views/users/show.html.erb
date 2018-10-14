@@ -13,7 +13,9 @@
     <% else %>
       <%= image_tag 'anonymous.png', class: 'border border-secondary rounded-circle w-50' %>
     <% end %>
-
+    <p>
+      <%= @user.posts.count %> posts
+    </p>
   </div>
 
   <div class="col-sm-8">
