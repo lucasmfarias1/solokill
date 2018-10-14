@@ -1,19 +1,21 @@
-<p class="my-1">
+<p class="mt-1 mb-0">
   <strong><%= @user.name %></strong>
 </p>
 
-<p>
+<p class="mb-2">
   <span class="badge badge-secondary">
     <%= @user.elo %>
   </span>
 </p>
 
-<% if @user.image.url %>
-  <%= image_tag(@user.image.url, class: 'w-50 rounded-circle') %>
-<% else %>
-  <%= image_tag 'anonymous.png', class: 'border border-secondary rounded-circle w-50' %>
-<% end %>
+<p class="m-0">
+  <% if @user.image.url %>
+    <%= image_tag(@user.image.url, class: 'w-50 rounded-circle') %>
+  <% else %>
+    <%= image_tag 'anonymous.png', class: 'border border-secondary rounded-circle w-50' %>
+  <% end %>
+</p>
 
-<p>
+<p class="my-1">
   <%= @user.posts.count %> posts
 </p>

@@ -1,20 +1,22 @@
-<p class="my-1">
+<p class="mt-1 mb-0">
   <%= link_to user_path(current_user.id) do %>
     <strong><%= current_user.name %></strong>
   <% end %>
 </p>
 
-<p>
+<p class="mb-2">
   <span class="badge badge-secondary">
     <%= current_user.elo %>
   </span>
 </p>
 
-<% if current_user.image.url %>
+<p class="m-0">
+  <% if current_user.image.url %>
   <%= image_tag(current_user.image.url, class: 'w-50 rounded-circle') %>
-<% else %>
+  <% else %>
   <%= image_tag 'anonymous.png', class: 'border border-secondary rounded-circle w-50' %>
-<% end %>
+  <% end %>
+</p>
 
 <p class="my-1">
   <%= link_to '/sync', class: 'btn btn-outline-info my-1' do %>
@@ -22,6 +24,6 @@
   <% end %>
 </p>
 
-<p>
+<p class="mb-1">
   <%= current_user.posts.count %> posts
 </p>
