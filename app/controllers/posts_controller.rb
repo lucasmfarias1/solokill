@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @new_post = Post.new
   end
 
   def create
@@ -15,7 +16,12 @@ class PostsController < ApplicationController
           user: @post.user.name
         })
 
-        format.html { redirect_to '/', notice: 'Postado!' }
+        if @post.parent
+          format.html { redirect_to post_path(@post.parent), notice: 'Postado!' }
+        else
+          format.html { redirect_to '/', notice: 'Postado!' }
+        end
+
         format.js
       else
         format.html { redirect_to '/', alert: 'Failed.' }
@@ -37,6 +43,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content, :parent_id)
   end
 end

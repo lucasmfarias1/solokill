@@ -8,8 +8,25 @@
 
   <div class="col-sm-8">
 
-    <div id="posts">
+    <div id="selected-post">
       <%= render @post %>
+    </div>
+
+    <div id="reply-box">
+      <%= form_with model: @new_post, url: posts_path, local: true, id: 'post-form' do |f| %>
+        <%= f.hidden_field :parent_id, value: @post.id %>
+        <div class="form-group text-center">
+          <%= f.text_area :content, class: 'form-control', autocomplete: 'off' %>
+          <%= f.submit 'Responder', id: 'post-button',class: 'btn btn-sm btn-block btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+
+    <div id="replies">
+      <h5>Respostas</h5>
+
+      <%= render @post.children %>
+
     </div>
 
   </div>

@@ -1,12 +1,13 @@
 <div class="card my-1">
   <div class="card-body p-3">
+
     <% if post.user.image.url %>
-      <%= image_tag(post.user.image.url, id: 'post-photo', class: 'mr-2 rounded-circle float-left w-25') %>
+    <%= image_tag(post.user.image.url, id: 'post-photo', class: 'mr-2 rounded-circle float-left w-25') %>
     <% else %>
-      <%= image_tag 'anonymous.png', id: 'post-photo', class: 'mr-2 border border-secondary rounded-circle float-left w-25' %>
+    <%= image_tag 'anonymous.png', id: 'post-photo', class: 'mr-2 border border-secondary rounded-circle float-left w-25' %>
     <% end %>
 
-    <p>
+    <p class="m-0">
       <%= link_to user_path(post.user_id) do %>
         <strong><%= post.user.name %></strong>
       <% end %>
@@ -17,6 +18,15 @@
         </span>
       <% end %>
     </p>
+
+    <% if post.parent %>
+      <%= link_to post_path(post.parent) do %>
+        <p class="text-muted m-0">
+          <em><small>- em resposta à</small></em>
+        </p>
+      <% end %>
+    <% end %>
+
     <p class="card-text">
       <%= post.content %>
       <% if post.user == current_user %>
@@ -26,5 +36,6 @@
                 data: { confirm: 'Tem certeza?' } %>
       <% end %>
     </p>
+
   </div>
 </div>
