@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!
 
   def show
     @post = Post.find(params[:id])
@@ -15,13 +15,23 @@ class PostsController < ApplicationController
           user: @post.user.name
         })
 
-        format.html { redirect_to '/', notice: 'Posted!' }
+        format.html { redirect_to '/', notice: 'Postado!' }
         format.js
       else
-        format.html { redirect_to '/', alert: 'Failed!' }
+        format.html { redirect_to '/', alert: 'Failed.' }
         format.js
       end
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+
+    return false unless @post.user == current_user
+
+    @post.destroy
+
+    redirect_to '/', alert: 'Post deletado.'
   end
 
   private

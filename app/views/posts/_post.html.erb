@@ -17,6 +17,14 @@
         </span>
       <% end %>
     </p>
-    <p class="card-text"><%= post.content %></p>
+    <p class="card-text">
+      <%= post.content %>
+      <% if post.user == current_user %>
+        <%= link_to 'X', post_path(post),
+                class: 'float-right btn btn-sm btn-danger',
+                method: :delete,
+                data: { confirm: 'Tem certeza?' } %>
+      <% end %>
+    </p>
   </div>
 </div>
