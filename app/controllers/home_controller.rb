@@ -1,7 +1,9 @@
 class HomeController < ApplicationController
   protect_from_forgery prepend: true
   before_action :authenticate_user!
+
   include ApplicationHelper
+
   def index
     if params[:filter]
       filter = params[:filter]
@@ -30,27 +32,6 @@ class HomeController < ApplicationController
     end
 
 
-  end
-
-  def new_post
-    @post = Post.new
-    @post.user = current_user
-    @post.content = params[:post][:content]
-
-    respond_to do |format|
-      if @post.save
-        Pusher.trigger('posts-channel','new-post', {
-          user: @post.user.name,
-          content: @post.content
-        })
-
-        format.html { redirect_to '/', notice: 'Posted!' }
-        format.js
-      else
-        format.html { redirect_to '/', notice: 'Failed!' }
-        format.js
-      end
-    end
   end
 
   def verify

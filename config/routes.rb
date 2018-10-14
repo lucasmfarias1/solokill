@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "home#index"
 
-  post 'home/index', to: 'home#new_post'
-
   post 'home/verify', to: 'home#verify'
   delete 'home/verify', to: 'home#unverify'
 
@@ -20,7 +18,7 @@ Rails.application.routes.draw do
   get '/bronze', to: 'home#index', defaults: { filter: 'BRONZE' }
 
   resources :users, only: [:show]
-  resources :posts, only: [:show]
+  resources :posts, only: [:show, :create]
 
   get '/sync', to: 'users#sync_elo'
 end

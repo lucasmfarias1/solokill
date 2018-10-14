@@ -39,7 +39,7 @@
 
   <div class="col-sm-8">
 
-    <%= form_with scope: :post, id: 'post-form' do |f| %>
+    <%= form_with scope: :post, url: posts_path, local: true, id: 'post-form' do |f| %>
       <div class="form-group text-center">
         <%= f.text_area :content, class: 'form-control', autocomplete: 'off' %>
         <%= f.submit 'Postar', id: 'post-button',class: 'btn btn-sm btn-block btn-primary' %>

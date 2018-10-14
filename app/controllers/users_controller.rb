@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:refresh_elo]
+  
   include ApplicationHelper
 
   def show
