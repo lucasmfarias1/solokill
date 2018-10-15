@@ -6,9 +6,11 @@ class PostsController < ApplicationController
     @new_post = Post.new
   end
 
-  def create
+  def create    
     @post = Post.new(post_params)
     @post.user = current_user
+
+    @post.parent_id = nil unless @post.parent
 
     respond_to do |format|
       if @post.save
