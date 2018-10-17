@@ -13,7 +13,7 @@
     </div>
 
     <div id="reply-box">
-      <%= form_with model: @new_post, url: posts_path, local: true, id: 'post-form' do |f| %>
+      <%= form_with model: @new_post, url: posts_path, id: 'post-form' do |f| %>
         <%= f.hidden_field :parent_id, value: @post.id %>
         <div class="form-group text-center">
           <%= f.text_area :content, class: 'form-control', autocomplete: 'off' %>
@@ -22,7 +22,7 @@
       <% end %>
     </div>
 
-    <div id="replies">
+    <div id="replies" class="mb-4">
       <h5>Respostas</h5>
 
       <%= render @post.children %>

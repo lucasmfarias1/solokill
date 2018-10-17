@@ -39,44 +39,18 @@
 
   <div class="col-sm-8">
 
-    <%= form_with scope: :post, url: posts_path, local: true, id: 'post-form' do |f| %>
+    <%= form_with scope: :post, url: posts_path, id: 'post-form' do |f| %>
       <div class="form-group text-center">
         <%= f.text_area :content, class: 'form-control', autocomplete: 'off' %>
         <%= f.submit 'Postar', id: 'post-button',class: 'btn btn-sm btn-block btn-primary' %>
       </div>
     <% end %>
 
-    <script>
-        var pusher = new Pusher("55d77172c59cfedfe8f9", {
-          cluster: 'us2',
-          encrypted: true
-        });
-    </script>
-
     <div id="new-post-alert">
     </div>
     <div id="posts">
       <%= render @posts %>
     </div>
-
-    <script>
-        var channel = pusher.subscribe('posts-channel');
-        channel.bind('new-post', function(data) {
-            let post_user = data.user;
-
-            if ("<%= current_user.name %>" != post_user) {
-              let div = document.getElementById('new-post-alert');
-              let new_content = document.createElement("div");
-              new_content.innerHTML = `
-              <div class="alert alert-primary" role="alert">
-                <a href="#" class="alert-link">${post_user} acabou de postar algo</a>
-              </div>`;
-              $(div).html(new_content);
-              $(document).attr("title", "Solokill(New post)");
-            }
-
-        });
-    </script>
 
     <div id="carregar-mais" class="my-4 text-center">
       <%= link_to_next_page @posts, 'Carregar mais posts', :remote => true, :id=>"load_more_link" %>

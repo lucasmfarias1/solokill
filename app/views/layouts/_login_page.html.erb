@@ -1,0 +1,29 @@
+<div id="login-page" class="container-fluid">
+
+  <div class="row">
+    <div class="col-sm-6" id="login-box">
+      <%= link_to 'sign_in' do %>
+        <%= image_tag 'logo-sk.png', height: '45' %>
+      <% end %>
+      <div id="alert-box" class="mt-1">
+        <% if notice %>
+        <p class="notice alert alert-info"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+      </div>
+
+      <%= yield %>
+    </div>
+    <div id="login-side" class="col-sm-6">
+      <ul class="text-center p-0">
+        <li><%= image_tag 'verify.png', height: 50 %> Vincule sua conta do LoL.</li>
+        <li><%= image_tag 'badge.png', height: 40 %> Mostre a todos quem você é.</li>
+        <li><%= image_tag 'read.png', height: 50 %> Veja o que as pessoas estão falando.</li>
+        <li><%= image_tag 'speak.png' %> Entre na discussão!</li>
+      </ul>
+    </div>
+  </div>
+
+</div>

@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     @new_post = Post.new
   end
 
-  def create    
+  def create
     @post = Post.new(post_params)
     @post.user = current_user
 
@@ -20,11 +20,11 @@ class PostsController < ApplicationController
 
         if @post.parent
           format.html { redirect_to post_path(@post.parent), notice: 'Postado!' }
+          format.js
         else
           format.html { redirect_to '/', notice: 'Postado!' }
+          format.js
         end
-
-        format.js
       else
         format.html { redirect_to '/', alert: 'Failed.' }
         format.js

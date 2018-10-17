@@ -1,0 +1,65 @@
+<nav class="navbar px-2 py-0 navbar-expand-sm navbar-light bg-light">
+  <a class="navbar-brand mr-2" href="/"><%= image_tag 'logo-sk.png', height: '45' %></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Filtrar
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/challenger">Challenger</a>
+          <a class="dropdown-item" href="/master">Master</a>
+          <a class="dropdown-item" href="/diamond">Diamond</a>
+          <a class="dropdown-item" href="/platinum">Platinum</a>
+          <a class="dropdown-item" href="/gold">Gold</a>
+          <a class="dropdown-item" href="/silver">Silver</a>
+          <a class="dropdown-item" href="/bronze">Bronze</a>
+        </div>
+      </li>
+    </ul>
+    <div class="form-inline my-0 my-lg-0">
+      <a class="mx-2" href="#" data-toggle="modal" data-target="#modalConfig">
+        <%= image_tag 'gear.png', height: 55 %>
+      </a>
+      <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-warning' %>
+    </div>
+  </div>
+</nav>
+
+<!-- Modal Desvincular -->
+<div class="modal fade" id="modalConfig" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Configurações</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with url: 'home/image' do |f| %>
+          <%= f.label :image, 'Foto de perfil' %>
+          <%= f.hidden_field :image_cache %>
+          <%= f.file_field :image %>
+          <%= f.submit 'Mudar foto de perfil', class: 'btn btn-sm btn-primary' %>
+        <% end %>
+
+        <hr>
+
+        <%= link_to 'Desvincular Invocador', 'home/verify', method: :delete, class: 'ml-1 btn btn-sm btn-danger' %>
+        <span data-toggle="tooltip" data-placement="top" title="Isso fará com que o seu nome de invocador seja desvinculado da sua conta do Solokill.">que?</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+      </div>
+    </div>
+  </div>
+</div>

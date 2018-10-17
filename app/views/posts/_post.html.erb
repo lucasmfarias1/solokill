@@ -12,7 +12,7 @@
         <strong><%= post.user.name %></strong>
       <% end %>
       <span class="badge badge-secondary"><%= post.user.elo %></span> -
-      <%= link_to post_path(post.id) do %>
+      <%= link_to post_path(post) do %>
         <span class="text-muted">
           <%= time_ago_in_words(post.created_at) %> ago
         </span>
@@ -22,7 +22,7 @@
     <% if post.parent %>
       <%= link_to post_path(post.parent), class: 'btn btn-light btn-sm' do %>
         <p class="text-muted m-0">
-          <em><small>- em resposta à</small></em>
+          <em><small>em resposta à</small></em>
         </p>
       <% end %>
     <% end %>

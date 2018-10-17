@@ -1,0 +1,17 @@
+<% if @post.valid? %>
+  $("#alert-box").html('<p class="alert alert-success">Postado com sucesso!</p>');
+  $("#post_content").val('');
+  $("#post-count").html('<%= @post.user.posts.count %>')
+
+  <% if @post.parent %>
+    $("<%= escape_javascript(render @post) %>").appendTo("#replies");
+    window.scroll(0, document.documentElement.offsetHeight);
+  <% else %>
+    $("<%= escape_javascript(render @post) %>").prependTo("#posts");
+  <% end %>
+
+<% else %>
+  var errors = "<%= @post.errors.full_messages[0] %>";
+
+  $("#alert-box").html('<p class="alert alert-danger">' + errors + '</p>');
+<% end %>
