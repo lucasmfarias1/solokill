@@ -41,11 +41,5 @@
       <%= image_tag 'replies.png' %>
     <% end %>
 
-    <% if post.user == current_user %>
-      <%= link_to 'x', post_path(post),
-              class: 'btn btn-danger btn-sm',
-              method: :delete,
-              data: { confirm: 'Tem certeza?' } %>
-    <% end %>
   </div>
 </div>
