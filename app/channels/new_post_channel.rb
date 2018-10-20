@@ -1,6 +1,6 @@
 class NewPostChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "post_channel"
+    # stream_from "post_channel"
   end
 
   def unsubscribed
