@@ -1,0 +1,33 @@
+<% unless current_user.lol_name %>
+  <h3>Vincule seu nome de invocador a sua conta!</h3>
+  <p>Voce so precisa inserir o codigo na sua conta para que o sistema possa verificar que ela e realmente sua.</p>
+  <p><strong>Seu codigo: <%= @code %></strong></p>
+  <p>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleCode">
+      Onde põe o código?
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleCode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <%= image_tag "guide.png", id: "guide-img" %>
+        </div>
+      </div>
+    </div>
+
+  </p>
+
+  <%= form_with url: 'home/verify' do |f| %>
+    <div class="form-group">
+      <%= f.text_field :summoner_name, class: 'form-control', autocomplete: 'off', placeholder: 'Nome de invocador' %>
+      <%= f.submit 'Vincular', class: 'btn btn-sm btn-block btn-primary' %>
+    </div>
+  <% end %>
+
+<% else %>
+
+  <%= render "users/current_user"  %>
+
+<% end %>

@@ -25,10 +25,20 @@
       </li>
     </ul>
     <div class="form-inline my-0 my-lg-0">
-      <a class="mx-2" href="#" data-toggle="modal" data-target="#modalConfig">
-        <%= image_tag 'gear.png', height: 55 %>
-      </a>
-      <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-warning' %>
+
+      <% if current_user %>
+        <a class="mx-2" href="#" data-toggle="modal" data-target="#modalConfig">
+          <%= image_tag 'gear.png', height: 55 %>
+        </a>
+
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-warning' %>
+
+      <% else %>
+
+        <%= link_to 'Sign In', new_user_session_path, class: 'btn btn-sm btn-success' %>
+
+      <% end %>
+
     </div>
   </div>
 </nav>

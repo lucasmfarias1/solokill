@@ -2,52 +2,30 @@
 
   <div class="col-sm-4 text-center">
 
-    <% unless current_user.lol_name %>
-      <h3>Vincule seu nome de invocador a sua conta!</h3>
-      <p>Voce so precisa inserir o codigo na sua conta para que o sistema possa verificar que ela e realmente sua.</p>
-      <p><strong>Seu codigo: <%= @code %></strong></p>
-      <p>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleCode">
-          Onde põe o código?
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleCode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <%= image_tag "guide.png", id: "guide-img" %>
-            </div>
-          </div>
-        </div>
-
-      </p>
-
-      <%= form_with url: 'home/verify' do |f| %>
-        <div class="form-group">
-          <%= f.text_field :summoner_name, class: 'form-control', autocomplete: 'off', placeholder: 'Nome de invocador' %>
-          <%= f.submit 'Vincular', class: 'btn btn-sm btn-block btn-primary' %>
-        </div>
-      <% end %>
-
-    <% else %>
-
-      <%= render "users/current_user"  %>
-
+    <% if current_user %>
+      <%= render partial: "layouts/user_panel" %>
     <% end %>
+
   </div>
 
   <div class="col-sm-8">
 
-    <%= form_with scope: :post, url: posts_path, id: 'post-form' do |f| %>
-      <div class="form-group text-center">
-        <%= f.text_area :content, class: 'form-control', autocomplete: 'off' %>
-        <%= f.submit 'Postar', id: 'post-button',class: 'btn btn-sm btn-block btn-primary' %>
-      </div>
+    <% if current_user %>
+      <%= form_with scope: :post, url: posts_path, id: 'post-form' do |f| %>
+        <div class="form-group text-center">
+          <%= f.text_area :content, class: 'form-control', autocomplete: 'off' %>
+          <%= f.submit 'Postar', id: 'post-button',class: 'btn btn-sm btn-block btn-primary' %>
+        </div>
+      <% end %>
+    <% else %>
+
+      <p class="text-center my-2">Faça <%= link_to 'login', new_user_session_path %> para poder postar.</p>
+
     <% end %>
 
     <div id="new-post-alert">
     </div>
+
     <div id="posts">
       <%= render @posts %>
     </div>

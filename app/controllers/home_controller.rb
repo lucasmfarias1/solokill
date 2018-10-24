@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   protect_from_forgery prepend: true
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
 
   include ApplicationHelper
 
@@ -23,14 +23,15 @@ class HomeController < ApplicationController
 
     # Post.joins(:user).where('users.lol_tier = ?', "DIAMOND")
 
-    if current_user.lol_verification_key
-      @code = current_user.lol_verification_key
-    else
-      current_user.lol_verification_key = generate_key
-      current_user.save
-      @code = current_user.lol_verification_key
+    if current_user
+      if current_user.lol_verification_key
+        @code = current_user.lol_verification_key
+      else
+        current_user.lol_verification_key = generate_key
+        current_user.save
+        @code = current_user.lol_verification_key
+      end
     end
-
 
   end
 

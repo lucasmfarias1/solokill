@@ -2,7 +2,7 @@
 
   <div class="col-sm-4 text-center">
 
-    <%= render "users/current_user"  %>
+    <%= render "users/current_user" if current_user  %>
 
   </div>
 
@@ -13,12 +13,20 @@
     </div>
 
     <div id="reply-box">
-      <%= form_with model: @new_post, url: posts_path, id: 'post-form' do |f| %>
-        <%= f.hidden_field :parent_id, value: @post.id %>
-        <div class="form-group text-center">
-          <%= f.text_area :content, class: 'form-control', autocomplete: 'off' %>
-          <%= f.submit 'Responder', id: 'post-button',class: 'btn btn-sm btn-block btn-primary' %>
-        </div>
+      <% if current_user %>
+
+        <%= form_with model: @new_post, url: posts_path, id: 'post-form' do |f| %>
+          <%= f.hidden_field :parent_id, value: @post.id %>
+          <div class="form-group text-center">
+            <%= f.text_area :content, class: 'form-control', autocomplete: 'off' %>
+            <%= f.submit 'Responder', id: 'post-button',class: 'btn btn-sm btn-block btn-primary' %>
+          </div>
+        <% end %>
+
+      <% else %>
+
+        <p class="text-center my-2">Faça <%= link_to 'login', new_user_session_path %> para poder postar.</p>
+
       <% end %>
     </div>
 

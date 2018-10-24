@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:create, :destroy]
 
   def show
     @post = Post.find(params[:id])
@@ -14,10 +14,6 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        Pusher.trigger('posts-channel','new-post', {
-          user: @post.user.name
-        })
-
         if @post.parent
           format.html { redirect_to post_path(@post.parent), notice: 'Postado!' }
           format.js
