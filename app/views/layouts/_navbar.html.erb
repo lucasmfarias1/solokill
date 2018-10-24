@@ -43,33 +43,4 @@
   </div>
 </nav>
 
-<!-- Modal Desvincular -->
-<div class="modal fade" id="modalConfig" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Configurações</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= form_with url: 'home/image' do |f| %>
-          <%= f.label :image, 'Foto de perfil' %>
-          <%= f.hidden_field :image_cache %>
-          <%= f.file_field :image %>
-          <%= f.submit 'Mudar foto de perfil', class: 'btn btn-sm btn-primary' %>
-        <% end %>
-
-        <hr>
-
-        <%= link_to 'Desvincular Invocador', 'home/verify', method: :delete, class: 'ml-1 btn btn-sm btn-danger' %>
-        <span data-toggle="tooltip" data-placement="top" title="Isso fará com que o seu nome de invocador seja desvinculado da sua conta do Solokill.">que?</span>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: 'layouts/modal_config' if current_user %>
