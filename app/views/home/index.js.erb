@@ -1,2 +1,5 @@
-$('#posts').append("<%= escape_javascript(render :partial => @posts)%>");
+$("#load_more_link").html("<%= j(image_tag('loading.gif', alt: 'Loading...', width: 25))%>")
+
+$('#posts').append("<%= j(render :partial => @posts)%>");
+
 $('#load_more_link').replaceWith("<%= escape_javascript(link_to_next_page(@posts, 'Carregar mais posts', :remote => true, :id=>'load_more_link'))%>");

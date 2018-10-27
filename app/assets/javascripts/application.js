@@ -28,7 +28,6 @@ $(document).on('turbolinks:load', function() {
        $(document).height()) {
       var more_posts_url = $("#load_more_link").attr('href');
         if (more_posts_url) {
-          $("#load_more_link").html('<img src="/assets/loading.gif" alt="Loading..." title="Loading..." width=25>')
           $.getScript(more_posts_url);
         }
     }
