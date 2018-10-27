@@ -24,22 +24,26 @@
         </div>
       </li>
     </ul>
-    <div class="form-inline my-0 my-lg-0">
 
+      <ul class="navbar-nav">
       <% if current_user %>
-        <a class="mx-2" href="#" data-toggle="modal" data-target="#modalConfig">
-          <%= image_tag 'gear.png', height: 55 %>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#modalConfig">
+          Settings
         </a>
+      </li>
 
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-warning' %>
+        <li class="nav-item">
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        </li>
 
       <% else %>
-
-        <%= link_to 'Sign In', new_user_session_path, class: 'btn btn-sm btn-success' %>
+        <li class="nav-item">
+          <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
+        </li>
 
       <% end %>
-
-    </div>
+    </ul>
   </div>
 </nav>
 
