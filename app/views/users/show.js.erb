@@ -1,2 +1,3 @@
-$('#posts').append("<%= escape_javascript(render :partial => @posts)%>");
-$('#load_more_link').replaceWith("<%= escape_javascript(link_to_next_page(@posts, 'Carregar mais posts', :remote => true, :id=>'load_more_link'))%>");
+$('#posts').append("<%= j(render :partial => @posts) %>");
+
+$('#load_more_link').replaceWith("<%= j(link_to_next_page(@posts, 'Carregar mais posts', :remote => true, :id=>'load_more_link'))%>");
