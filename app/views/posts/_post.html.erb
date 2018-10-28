@@ -8,15 +8,23 @@
     <% end %>
 
     <p class="m-0">
+
       <%= link_to user_path(post.user_id) do %>
         <strong><%= post.user.name %></strong>
       <% end %>
-      <span class="badge badge-secondary"><%= post.user.elo %></span> -
+
+      <span class="badge badge-secondary">
+        <%= post.user.elo %>
+      </span>
+
       <%= link_to post_path(post) do %>
         <span class="text-muted">
-          <%= time_ago_in_words(post.created_at) %> ago
+          <small>
+            <%= time_ago_in_words(post.created_at) %> ago
+          </small>
         </span>
       <% end %>
+
     </p>
 
     <% if post.parent %>
