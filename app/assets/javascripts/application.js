@@ -28,13 +28,14 @@ $(document).on('turbolinks:load', function() {
 
     if ($(window).scrollTop() + $(window).height() == $(document).height()) {
       $(window).data('ajaxready', false);
-
       var more_posts_url = $("#load_more_link").attr('href');
-        if (more_posts_url) {
-          $("#load_more_link").html('Loading...');
-          $.getScript(more_posts_url);
-          $(window).data('ajaxready', true);
-        }
+
+      if (more_posts_url) {
+        $("#load_more_link").html('Loading...');
+        $.getScript(more_posts_url);
+      }
+
+      $(window).data('ajaxready', true);
     }
   });
 });
