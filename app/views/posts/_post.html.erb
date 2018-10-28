@@ -1,4 +1,4 @@
-<div class="card my-1">
+<div class="card my-1" id="post-<%= post.id %>">
   <div class="card-body p-3">
 
     <% if post.user.image.url %>
@@ -29,7 +29,6 @@
 
     <p class="card-text">
       <%= post.content %>
-
     </p>
 
 
@@ -38,8 +37,13 @@
   <div class="p-1 card-footer text-muted">
     <%= link_to post_path(post), class: 'btn btn-light btn-sm' do %>
       <%= post.children.count %>
-      <%= image_tag 'replies.png' %>
+      <%= image_tag 'replies.png', width: 20 %>
     <% end %>
 
+    <% if post.user == current_user %>
+      <%= link_to post_path(post), method: :delete, class: 'float-right btn btn-sm btn-danger', data: {confirm: "Tem certeza que quer deletar este post?"}, remote: true do %>
+        <%= image_tag 'delete.png', width: 20 %>
+      <% end %>
+    <% end %>
   </div>
 </div>

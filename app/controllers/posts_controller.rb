@@ -22,7 +22,7 @@ class PostsController < ApplicationController
           format.js
         end
       else
-        format.html { redirect_to '/', alert: 'Failed.' }
+        format.html { redirect_to '/', alert: 'Erro.' }
         format.js
       end
     end
@@ -33,9 +33,14 @@ class PostsController < ApplicationController
 
     return false unless @post.user == current_user
 
-    @post.destroy
-
-    redirect_to '/', alert: 'Post deletado.'
+    respond_to do |format|
+      if @post.destroy
+        format.html { redirect_to '/', alert: 'Post deletado.' }
+        format.js
+      else
+        format.html { redirect_to '/', alert: 'Erro.' }
+      end
+    end
   end
 
   private
