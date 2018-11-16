@@ -74,6 +74,8 @@ gem 'jquery-rails'
 
 # Devise - Authentication system
 gem 'devise'
+# OAuth
+gem 'omniauth-facebook'
 
 # .env on development
 gem 'dotenv-rails', groups: [:development, :test]

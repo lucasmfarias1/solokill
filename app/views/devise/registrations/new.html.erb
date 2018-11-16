@@ -1,6 +1,20 @@
 <div class="row">
   <div class="col-md-6 offset-md-3">
-    
+
+    <hr>
+
+    <%=
+      link_to(
+        user_facebook_omniauth_authorize_path,
+        class: 'btn btn-lg btn-block btn-light'
+        ) do
+    %>
+      <%= image_tag 'facebook.png' %> Entre com Facebook
+    <% end %>
+
+    <hr>
+    <div class="text-center">ou pelo signup tradicional:</div>
+
     <h2>Sign up</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
